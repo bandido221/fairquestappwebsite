@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <title>Welcome Vendors | FairQuest</title>
+  <link href="https://fonts.googleapis.com/css2?family=Uncial+Antiqua&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500&family=Domine&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Domine', serif;
+      background-color: #000;
+      padding: 40px;
+      text-align: center;
+      color: #f0e6d2;
+      margin: 0;
+    }
+
+    h1, h2 {
+      font-family: 'Cinzel', serif;
+    }
+
+    .top-banner {
+      width: 100%;
+      max-width: 600px;
+      height: auto;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto 20px auto;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    .logo {
+      max-width: 100px;
+      height: auto;
+      margin: 0 auto 20px auto;
+      display: block;
+      filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.4));
+      transition: transform 0.3s ease;
+    }
+
+    .logo:hover {
+      transform: scale(1.05);
+    }
+
+    .container {
+      max-width: 700px;
+      margin: auto;
+      background: rgba(251, 241, 200, 0.88);
+      padding: 30px 40px;
+      border-radius: 12px;
+      border: 2px solid #aa8452;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+      color: #3b1f1f;
+    }
+
+    h1 {
+      color: #150b1d;
+      font-size: 36px;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 18px;
+      color: #120b0b;
+      line-height: 1.6;
+      margin-top: 10px;
+    }
+
+    .form-box {
+      margin-top: 30px;
+      text-align: left;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      margin-top: 10px;
+      font-size: 16px;
+      border: 1px solid #aa8452;
+      border-radius: 6px;
+      background-color: #fdf7e1;
+      color: #3b1f1f;
+    }
+
+    .button-row {
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    button {
+      padding: 12px 20px;
+      font-size: 16px;
+      margin: 10px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+      color: white;
+    }
+
+    .signin {
+      background-color: #b73239;
+    }
+
+    .signup {
+      background-color: #5b2a86;
+    }
+
+    button:hover {
+      filter: brightness(1.1);
+    }
+
+    .msg {
+      color: #b73239;
+      margin-top: 12px;
+      font-weight: bold;
+    }
+
+    footer {
+      margin-top: 40px;
+      font-size: 14px;
+    }
+
+    footer a {
+      color: #aa8452;
+      text-decoration: none;
+      margin: 0 8px;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* 📱 Mobile adjustments */
+    @media (max-width: 768px) {
+      body {
+        padding: 20px;
+      }
+
+      .container {
+        padding: 20px;
+      }
+
+      h1 {
+        font-size: 28px;
+      }
+
+      .form-box label {
+        font-size: 15px;
+      }
+
+      input {
+        font-size: 15px;
+      }
+
+      button {
+        width: 100%;
+        margin-top: 10px;
+      }
+
+      .button-row {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      footer {
+        font-size: 13px;
+      }
+    }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+</head>
+<body>
+
+  <!-- Banner Image -->
+  <img src="../images/banner.png" alt="FairQuest Banner" class="top-banner" />
+
+  <!-- Logo -->
+  <img src="../images/logo.png" alt="FairQuest Logo" class="logo" />
+
+  <div class="container">
+    <h1>Welcome to FairQuest Vendor Portal</h1>
+    <p>
+      This portal is designed for vendors who want to be featured in the FairQuest app —
+      a fun and interactive way for users to discover Renaissance fairs and the amazing
+      vendors that make them magical.
+    </p>
+    <p>
+      By creating an account, you’ll be able to:
+    <ul style="text-align: left; margin: 0 auto; max-width: 500px;">
+      <li>📋 Submit your vendor profile</li>
+      <li>📍 Choose which fairs you’ll be attending</li>
+      <li>🔽 Help fairgoers find and support your booth</li>
+      <li>🏱 Earn special benefits for early participation</li>
+    </ul>
+    </p>
+
+    <div class="form-box">
+      <label for="email"><strong>Email</strong></label>
+      <input type="email" id="email" placeholder="Enter your email" />
+
+      <label for="password"><strong>Password</strong></label>
+      <input type="password" id="password" placeholder="Enter your password" />
+
+      <div class="button-row">
+        <button class="signin" onclick="signIn()">Sign In</button>
+        <button class="signup" onclick="signUp()">Sign Up</button>
+      </div>
+
+      <p id="authMessage" class="msg"></p>
+    </div>
+  </div>
+
+  <footer>
+    <a href="index.html">Home</a> |
+    <a href="../vendor/info.html">Info</a> |
+    <a href="../terms.html">Terms</a> |
+    <a href="../privacy.html">Privacy</a> |
+    <a href="../faq.html">FAQ</a> |
+    <a href="../contact.html">Contact</a>
+  </footer>
+
+  <script>
+    const supabase = window.supabase.createClient(
+      'https://awtbjuiqgtdydsqzimul.supabase.co',
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImF3dGJqdWlxZ3RkeWRzcXppbXVsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDE0OTY4MDgsImV4cCI6MjA1NzA3MjgwOH0.ES0B3O_M0dHaMHMutpkXvThMVMwIUxPqL1cvM1J2kUQ'
+    );
+
+    // 🔄 Redirect to dashboard if already signed in
+    window.addEventListener('DOMContentLoaded', async () => {
+      const { data: { session } } = await supabase.auth.getSession();
+      if (session?.user?.id) {
+        window.location.href = 'dashboard.html';
+      }
+    });
+
+    async function signIn() {
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      const { data: signInData, error } = await supabase.auth.signInWithPassword({ email, password });
+
+      const authMessage = document.getElementById('authMessage');
+      if (error) {
+        authMessage.textContent = `❌ ${error.message}`;
+        return;
+      }
+
+      authMessage.textContent = "✅ Signing in... Loading profile...";
+
+      const { data: { session } } = await supabase.auth.getSession();
+      const userId = session?.user?.id;
+
+      const { data: vendor } = await supabase
+        .from('vendor_applications')
+        .select('*')
+        .eq('user_id', userId)
+        .limit(1)
+        .single();
+
+      if (vendor) {
+        localStorage.setItem('vendorProfile', JSON.stringify(vendor));
+      }
+
+      setTimeout(() => {
+        window.location.href = 'dashboard.html';
+      }, 1000);
+    }
+
+    async function signUp() {
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      const { error } = await supabase.auth.signUp({ email, password });
+
+      document.getElementById('authMessage').textContent = error
+        ? `❌ ${error.message}`
+        : "✅ Sign-up successful. Please check your email to confirm.";
+    }
+  </script>
+</body>
+</html>
