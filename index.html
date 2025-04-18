@@ -7,17 +7,31 @@
 
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500&family=Domine&display=swap" rel="stylesheet">
-  <!-- Font Awesome for social media icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-<!-- Google Analytics (FairQuest Website) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-HP222J86X0"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-HP222J86X0');
-</script>
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-HP222J86X0"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-HP222J86X0');
+
+    function trackClick(label) {
+      gtag('event', 'click', {
+        event_category: 'button',
+        event_label: label
+      });
+    }
+
+    function trackComingSoon(label) {
+      alert(`${label} is coming soon!`);
+      gtag('event', 'coming_soon_click', {
+        event_category: 'Coming Soon',
+        event_label: label
+      });
+    }
+  </script>
 
   <style>
     body {
@@ -33,7 +47,6 @@
       width: 100%;
       max-width: 600px;
       height: auto;
-      object-fit: contain;
       display: block;
       margin: 0 auto 20px auto;
       border-radius: 12px;
@@ -153,15 +166,10 @@
   </header>
 
   <div class="button-group">
-<a class="btn" href="https://yourappdownloadlink.com"
-   onclick="gtag('event', 'click', {
-     'event_category': 'button',
-     'event_label': 'Download App'
-   });">
-   📲 Download App
-</a>
-    <a class="btn" href="vendor/index.html">🧺 Vendor Portal</a>
-    <a class="btn" href="#">🎪 Explore Fairs</a>
+    <a class="btn" href="#" onclick="trackComingSoon('Download App')">📲 Download App</a>
+    <a class="btn" href="vendor/index.html" onclick="trackClick('Vendor Portal')">🧺 Vendor Portal</a>
+    <a class="btn" href="vendor_performer/performer/index.html" onclick="trackClick('Performer Portal')">🎭 Performer Portal</a>
+    <a class="btn" href="#" onclick="trackComingSoon('Explore Fairs')">🎪 Explore Fairs</a>
   </div>
 
   <footer>
